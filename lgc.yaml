@@ -1,0 +1,116 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  creationTimestamp: "2022-11-16T07:01:35Z"
+  generation: 1
+  name: logconfigs.loggie.io
+  resourceVersion: "365992333"
+  selfLink: /apis/apiextensions.k8s.io/v1/customresourcedefinitions/logconfigs.loggie.io
+  uid: be5e94fe-73d6-42c4-93f3-589c1fc3427a
+spec:
+  conversion:
+    strategy: None
+  group: loggie.io
+  names:
+    kind: LogConfig
+    listKind: LogConfigList
+    plural: logconfigs
+    shortNames:
+    - lgc
+    singular: logconfig
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - description: select pods
+      jsonPath: .spec.selector.labelSelector
+      name: Pod Selector
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: Age
+      type: date
+    name: v1beta1
+    schema:
+      openAPIV3Schema:
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation'
+            type: string
+          kind:
+            description: 'Kind is a string value representing'
+            type: string
+          metadata:
+            type: object
+          spec:
+            properties:
+              pipeline:
+                properties:
+                  interceptorRef:
+                    type: string
+                  interceptors:
+                    type: string
+                  name:
+                    type: string
+                  sink:
+                    type: string
+                  sinkRef:
+                    type: string
+                  sources:
+                    type: string
+                type: object
+              selector:
+                properties:
+                  cluster:
+                    type: string
+                  labelSelector:
+                    additionalProperties:
+                      type: string
+                    type: object
+                  nodeSelector:
+                    additionalProperties:
+                      type: string
+                    type: object
+                  type:
+                    type: string
+                type: object
+            type: object
+          status:
+            properties:
+              message:
+                properties:
+                  lastTransitionTime:
+                    type: string
+                  observedGeneration:
+                    format: int64
+                    type: integer
+                  reason:
+                    type: string
+                type: object
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: LogConfig
+    listKind: LogConfigList
+    plural: logconfigs
+    shortNames:
+    - lgc
+    singular: logconfig
+  conditions:
+  - lastTransitionTime: "2022-11-16T07:01:35Z"
+    message: no conflicts found
+    reason: NoConflicts
+    status: "True"
+    type: NamesAccepted
+  - lastTransitionTime: "2022-11-16T07:01:35Z"
+    message: the initial names have been accepted
+    reason: InitialNamesAccepted
+    status: "True"
+    type: Established
+  storedVersions:
+  - v1beta1
