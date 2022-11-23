@@ -1,0 +1,38 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: users.auth.ilinux.io
+spec:
+  group: auth.ilinux.io
+  names:
+    kind: User
+    plural: users
+    singular: user
+    shortNames:
+    - u
+  scope: Namespaced  #名称空间级别
+  versions:
+  - served: true
+    storage: true
+    name: v1alpha1  #版本号
+    schema:
+      openAPIV3Schema:
+        type: object    #对字段做限制 
+        properties:
+          spec:
+            type: object
+            properties:
+              userID:
+                type: integer  #整形
+                minimum: 1
+                maximum: 65535
+              groups :
+                type: array   #列表
+                items:
+                  type: string
+              email:
+                type: string
+              password:
+                type: string
+                format: password
+            required: ["userID","groups"]
