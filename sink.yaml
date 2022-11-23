@@ -1,0 +1,65 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  creationTimestamp: "2022-11-16T07:01:35Z"
+  generation: 1
+  name: sinks.loggie.io
+  resourceVersion: "365992332"
+  selfLink: /apis/apiextensions.k8s.io/v1/customresourcedefinitions/sinks.loggie.io
+  uid: 886e2d61-a946-4eab-8fca-e9da20bb8ea3
+spec:
+  conversion:
+    strategy: None
+  group: loggie.io
+  names:
+    kind: Sink
+    listKind: SinkList
+    plural: sinks
+    singular: sink
+  scope: Cluster
+  versions:
+  - name: v1beta1
+    schema:
+      openAPIV3Schema:
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            properties:
+              sink:
+                type: string
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+status:
+  acceptedNames:
+    kind: Sink
+    listKind: SinkList
+    plural: sinks
+    singular: sink
+  conditions:
+  - lastTransitionTime: "2022-11-16T07:01:35Z"
+    message: no conflicts found
+    reason: NoConflicts
+    status: "True"
+    type: NamesAccepted
+  - lastTransitionTime: "2022-11-16T07:01:35Z"
+    message: the initial names have been accepted
+    reason: InitialNamesAccepted
+    status: "True"
+    type: Established
+  storedVersions:
+  - v1beta1
