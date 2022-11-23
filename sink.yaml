@@ -23,10 +23,11 @@ spec:
       openAPIV3Schema:
         properties:
           apiVersion:
-            description: 'api version'
+            description: 'APIVersion'
             type: string
           kind:
-            description: 'kind'
+            description: 'Kind'
+            type: string
           metadata:
             type: object
           spec:
